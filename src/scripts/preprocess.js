@@ -9,7 +9,20 @@
  */
 export function cleanNames (data) {
   // TODO: Clean the player name data
-  return []
+  const cleanedData = data.map(entry => {
+    const name = entry.Player
+    const words = name.split(' ')
+
+    const capitalizedWords = words.map(word => {
+      // Convert the first character of each word to uppercase and the rest to lowercase
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    })
+
+    const cleanedName = capitalizedWords.join(' ')
+
+    return { ...entry, Player: cleanedName }
+  })
+  return cleanedData
 }
 
 /**
