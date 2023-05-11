@@ -8,6 +8,11 @@
  */
 export function updateGroupXScale (scale, data, width) {
   // TODO : Set the domain and range of the groups' x scale
+  const acts = []
+  data.forEach(act => {
+    acts.push(act.Act)
+  })
+  scale.domain(acts).range([0, width])
 }
 
 /**
@@ -19,6 +24,13 @@ export function updateGroupXScale (scale, data, width) {
  */
 export function updateYScale (scale, data, height) {
   // TODO : Set the domain and range of the graph's y scale
+  let maxLineCounts = 0
+  data.forEach(act => {
+    act.Players.forEach(player => {
+      if (player.Count > maxLineCounts) maxLineCounts = player.Count
+    })
+  })
+  scale.domain([maxLineCounts, 0]).range([0, height])
 }
 
 /**
