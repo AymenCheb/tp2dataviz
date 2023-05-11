@@ -75,7 +75,20 @@ export function getTopPlayers (data) {
  */
 export function summarizeLines (data) {
   // TODO : Generate the data structure as defined above
-  return []
+  const summarized = []
+  let currentActKey = data[0].Act
+  let currentAct = { Act: currentActKey, Players: [] }
+  data.forEach(entry => {
+    if (currentActKey !== entry.Act) {
+      summarized.push(currentAct)
+      currentActKey = entry.Act
+      currentAct = { Act: currentActKey, Players: [] }
+    }
+    const player = currentAct.Players.find(p => p.Player === entry.Player)
+    player ? player.Count++ : currentAct.Players.push({ Player: entry.Player, Count: 1 })
+  })
+  summarized.push(currentAct)
+  return summarized
 }
 
 /**
