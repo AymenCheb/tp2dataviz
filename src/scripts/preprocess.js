@@ -32,8 +32,22 @@ export function cleanNames (data) {
  * @returns {string[]} The names of the top 5 players with most lines
  */
 export function getTopPlayers (data) {
-  // TODO: Find the five top players with the most lines in the play
-  return []
+  const lineCounts = {}
+
+  data.forEach(entry => {
+    const player = entry.Player
+    lineCounts[player] = (lineCounts[player] || 0) + 1
+  })
+
+  const playerArray = Object.keys(lineCounts).map(player => ({
+    name: player,
+    lines: lineCounts[player]
+  }))
+
+  playerArray.sort((a, b) => b.lines - a.lines)
+
+  const topPlayers = playerArray.slice(0, 5).map(player => player.name)
+  return topPlayers
 }
 
 /**
