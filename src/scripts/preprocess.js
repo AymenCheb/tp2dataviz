@@ -104,5 +104,16 @@ export function replaceOthers (data, top) {
   // TODO : For each act, sum the lines uttered by players not in the top 5 for the play
   // and replace these players in the data structure by a player with name 'Other' and
   // a line count corresponding to the sum of lines
-  return []
+  const result = data.map(act => {
+    const simplifiedAct = { Act: act.Act, Players: [] }
+    const other = { Player: 'Other', Count: 0 }
+    act.Players.forEach(player => {
+      if (top.find(p => p === player.Player)) {
+        simplifiedAct.Players.push(player)
+      } else other.Count += player.Count
+    })
+    simplifiedAct.Players.push(other)
+    return simplifiedAct
+  })
+  return result
 }
