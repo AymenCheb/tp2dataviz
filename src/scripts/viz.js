@@ -67,5 +67,5 @@ export function drawBars (y, xSubgroup, players, height, color, tip) {
     .attr('height', player => height - y(player.Count)) // Set the height of the bars
     .attr('fill', player => color(player.Player)) // Set the appropriate color depending on the player
     .on('mouseover', tip.show) // Show tooltip on mouseover
-    .on('mouseout', tip.hide) // Show tooltip on mouseout
+    .on('mouseout', tip.hide) // Hide tooltip on mouseout
 }
