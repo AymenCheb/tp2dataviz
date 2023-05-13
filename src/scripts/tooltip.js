@@ -15,5 +15,21 @@ export function getContents (d) {
       + A bold label for the player's line count
         followed by the number of lines
   */
-  return ''
+
+  // The current implementation does what is shown in the screenshot from lab statement. It does NOT do what is asked above since it doesn't correspond
+  const name = d.target.__data__.Player
+  const count = d.target.__data__.Count
+  const tooltip = d3.create('div')
+
+  tooltip.append('p')
+    .style('font-family', 'Grenze Gotish')
+    .style('font-size', '24px')
+    .style('font-weight', 'normal')
+    .text(name)
+
+  tooltip.append('p')
+    .style('font-weight', 'bold')
+    .text(count + ' lines')
+
+  return tooltip.node().outerHTML
 }
