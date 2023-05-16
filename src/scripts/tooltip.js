@@ -22,7 +22,7 @@ export function getContents (d) {
   const tooltip = d3.create('div')
 
   tooltip.append('p')
-    .style('font-family', 'Grenze Gotish')
+    .style('font-family', 'Grenze Gotisch')
     .style('font-size', '24px')
     .style('font-weight', 'normal')
     .text(name)
